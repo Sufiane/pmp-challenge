@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "didomi_pmp",
+  "name": "didomi-pmp",
   "main": "src/index.ts",
   "compatibility_date": "2025-05-11",
   "compatibility_flags": [
