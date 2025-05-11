@@ -1,0 +1,32 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Users {
+  id            String          @id @default(uuid(7))
+  email         String          @unique
+  ConsentEvents ConsentEvents[]
+
+  @@map("users")
+}
+
+model ConsentEvents {
+  id        String   @id @default(uuid(7))
+  createdAt DateTime @default(now())
+  email     Boolean
+  sms       Boolean
+  userId    String   @map("user_id")
+
+  user Users @relation(fields: [userId], references: [id])
+
+  @@map("consent_events")
+}
