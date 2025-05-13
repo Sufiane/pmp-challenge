@@ -9,7 +9,7 @@ import { deleteUserDto } from './dto/delete-user.dto';
 const app = new Hono();
 
 app.get('/:email', zValidator('param', getUserDto), (c) => {
-    return getUser(Email(c.req.valid('param').email));
+        return getUser(Email(c.req.valid('param').email));
 });
 
 app.post('/', zValidator('json', createUserDto), async (c): Promise<void> => {

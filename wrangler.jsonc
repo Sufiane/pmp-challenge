@@ -5,5 +5,13 @@
   "compatibility_date": "2025-05-11",
   "compatibility_flags": [
     "nodejs_compat"
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "didomi",
+      "database_id": "c5e5b19b-4d62-4f38-ab48-467ea440a863",
+      "migrations_dir": "./prisma/migrations"
+    }
   ]
 }

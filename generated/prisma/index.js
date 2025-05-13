@@ -137,12 +137,14 @@ const config = {
         "native": true
       }
     ],
-    "previewFeatures": [],
+    "previewFeatures": [
+      "driverAdapters"
+    ],
     "sourceFilePath": "/Users/sufianesouissi/Development/pmp-challenge/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": "../../.env",
+    "rootEnvPath": null,
     "schemaEnvPath": "../../.env"
   },
   "relativePath": "../../prisma",
@@ -160,8 +162,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"sqlite\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel Users {\n  id            String          @id @default(uuid(7))\n  email         String          @unique\n  ConsentEvents ConsentEvents[]\n\n  @@map(\"users\")\n}\n\nmodel ConsentEvents {\n  id        String   @id @default(uuid(7))\n  createdAt DateTime @default(now())\n  email     Boolean\n  sms       Boolean\n  userId    String   @map(\"user_id\")\n\n  user Users @relation(fields: [userId], references: [id])\n\n  @@map(\"consent_events\")\n}\n",
-  "inlineSchemaHash": "1682a0a32192868662ca23960ded0376c83c67613b04c3db0f311ba6bbad069a",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\ngenerator client {\n  provider        = \"prisma-client-js\"\n  output          = \"../generated/prisma\"\n  previewFeatures = [\"driverAdapters\"]\n}\n\ndatasource db {\n  provider = \"sqlite\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel Users {\n  id            String          @id @default(uuid(7))\n  email         String          @unique\n  ConsentEvents ConsentEvents[]\n\n  @@map(\"users\")\n}\n\nmodel ConsentEvents {\n  id        String   @id @default(uuid(7))\n  createdAt DateTime @default(now())\n  email     Boolean\n  sms       Boolean\n  userId    String   @map(\"user_id\")\n\n  user Users @relation(fields: [userId], references: [id])\n\n  @@map(\"consent_events\")\n}\n",
+  "inlineSchemaHash": "2675f2cd5988f6011ae61ebdab7d47be0890155e1e4d5ede6b041a2fbc31bdc2",
   "copyEngine": true
 }
 

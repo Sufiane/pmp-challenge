@@ -1,8 +1,20 @@
-import { Hono } from 'hono'
-import userController from './domain/users/users.controller'
+import { Hono } from 'hono';
+import userController from './domain/users/users.controller';
+import DbClient from '../prisma/client';
+import { requestContextStore } from './shared/request-context';
 
-const app = new Hono()
+type Bindings = {
+    DB: D1Database
+}
 
-app.route('/users', userController)
+const app = new Hono<{ Bindings: Bindings }>();
 
-export default app
+app.use('*', async (c, next) => {
+    await requestContextStore.run({
+        prismaClient: new DbClient(c.env.DB).getClient(),
+    }, next);
+});
+
+app.route('/users', userController);
+
+export default app;
